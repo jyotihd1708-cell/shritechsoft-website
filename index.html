@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShriTechSoft - Salesforce Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background: #fff;
+    }
+    section {
+      scroll-margin-top: 80px;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+      width: 100%;
+    }
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 1.5rem;
+      gap: 1rem;
+    }
+    .logo-area img {
+      height: 70px;
+      width: auto;
+    }
+    .nav-links {
+      flex: 2 1 400px;
+      list-style: none;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li {
+      position: relative;
+    }
+    .nav-links a {
+      color: #253348;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      padding: 3px 6px;
+      border-radius: 3px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #0ea5e9;
+      border-bottom: 2px solid #0ea5e9;
+    }
+    .dropdown {
+      cursor: pointer;
+      padding-right: 12px;
+    }
+    .dropdown i {
+      margin-left: 4px;
+      font-size: 0.9em;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 2.1em;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      list-style: none;
+      min-width: 135px;
+      border-radius: 7px;
+      overflow: hidden;
+      z-index: 10;
+      padding: 0;
+      margin: 0;
+    }
+    .dropdown-menu li a {
+      display: block;
+      padding: 7px 16px;
+      color: #253348;
+      border: none;
+      font-size: 0.95rem;
+    }
+    .dropdown-menu li a:hover {
+      background: #eaf8ff;
+      color: #0ea5e9;
+    }
+    .nav-links li:hover .dropdown-menu {
+      display: block;
+    }
+    .nav-right {
+      flex: 1 1 220px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.7rem;
+      font-size: 1rem;
+      color: #253348;
+    }
+    .nav-phone {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      white-space: nowrap;
+    }
+    .nav-phone i {
+      color: #0ea5e9;
+      font-size: 1.1em;
+    }
+    .nav-social a {
+      margin: 0 0.1rem;
+      display: inline-block;
+      color: #3b465c;
+      background: #f3f5f8;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      font-size: 1.2rem;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-social a:hover {
+      color: #0ea5e9;
+      background: #eaf8ff;
+    }
+
+    /* HERO */
+    .hero-light {
+      background: #f6f4fa;
+      padding: 3rem 0;
+    }
+    .hero-content {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 3rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0 1.5rem;
+    }
+    .hero-text {
+      flex: 1 1 460px;
+    }
+    
+    .hero-text h1 {
+      font-size: 2.4rem;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      font-weight: 900;
+      margin: 0 0 1rem 0;
+    }
+    .hero-text .strong {
+      color: #222;
+    }
+    .hero-text .accent {
+      color: #238bfa;
+      font-weight: 900;
+    }
+    .desc {
+      font-size: 1.05rem;
+      color: #3b4251;
+      margin-bottom: 1.8rem;
+      max-width: 480px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn,
+    .btn.outline {
+      font-size: 1rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 2rem;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 1.5px 8px rgba(70,190,240,.09);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn {
+      background: #27a2ee;
+      color: #fff;
+    }
+    .btn.outline {
+      background: transparent;
+      border: 2px solid #27a2ee;
+      color: #27a2ee;
+    }
+    .btn:hover {
+      background: #238bfa;
+    }
+    .btn.outline:hover {
+      background: #27a2ee;
+      color: #fff;
+    }
+    .hero-image {
+      flex: 1 1 360px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-image img {
+      width: 320px;
+      max-width: 95vw;
+      height: auto;
+      border-radius: 1.1rem;
+      box-shadow: 0 2px 18px rgba(120,130,240,0.05);
+      background: transparent;
+    }
+
+    /* ABOUT */
+    .about-section {
+      background: #f7fafd;
+      padding: 3rem 0;
+    }
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .about-content h2 {
+      font-size: 2rem;
+      color: #238bfa;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+    }
+    .about-content p {
+      font-size: 1.05rem;
+      color: #253348;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    /* SERVICES */
+    .services-section {
+      background: #f6f8ff;
+      padding: 3rem 0;
+    }
+    .services-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .services-content h2 {
+      font-size: 2rem;
+      color: #238bfa;
+      font-weight: 800;
+      margin-bottom: 1.1rem;
+    }
+    .services-content .subtitle {
+      font-size: 1.05rem;
+      color: #253348;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 18px rgba(50, 70, 200, 0.075);
+      padding: 1.6rem 1.2rem;
+      text-align: left;
+      color: #232c3c;
+      transition: transform 0.16s, box-shadow 0.16s;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(40, 118, 250, 0.15);
+    }
+    .service-card h3 {
+      color: #238bfa;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+    .service-card p {
+      color: #416189;
+      font-size: 0.98rem;
+      margin: 0;
+    }
+
+    /* INDUSTRIES */
+    .industries-section {
+      background: #f1f6fc;
+      padding: 3rem 0;
+    }
+    .industries-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .industries-content h2 {
+      font-size: 2rem;
+      color: #246aea;
+      font-weight: 800;
+      margin-bottom: 1.1rem;
+    }
+    .industries-content .subtitle {
+      font-size: 1.05rem;
+      color: #253348;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.3rem;
+      margin-top: 1rem;
+    }
+    .industry-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 2px 10px rgba(50, 70, 200, 0.07);
+      padding: 1.2rem 1rem;
+      color: #246aea;
+      font-size: 1.02rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.18s, transform 0.18s, background 0.18s;
+    }
+    .industry-card:hover {
+      box-shadow: 0 10px 26px rgba(40, 118, 250, 0.12);
+      transform: translateY(-3px) scale(1.02);
+      background: #eaf8ff;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: #f7fafd;
+      padding: 3rem 0;
+    }
+    .contact-content {
+      max-width: 540px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 2.2rem 1.4rem 2rem 1.4rem;
+      border-radius: 1.2rem;
+      box-shadow: 0 6px 28px rgba(34, 110, 230, 0.06);
+      text-align: center;
+    }
+    .contact-content h2 {
+      font-size: 2rem;
+      color: #238bfa;
+      font-weight: 800;
+      margin-bottom: 1.1rem;
+    }
+    .contact-content .subtitle {
+      margin-bottom: 2rem;
+      color: #363e55;
+      font-size: 1.03rem;
+      font-weight: 500;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .form-row input {
+      flex: 1 1 47%;
+      padding: 0.85rem 1.05rem;
+      font-size: 0.98rem;
+      border-radius: 0.9rem;
+      border: 1.5px solid #dde7f7;
+      background: #f5f8fd;
+      color: #253348;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-row input:focus,
+    .contact-form textarea:focus {
+      border-color: #238bfa;
+    }
+    .contact-form textarea {
+      resize: vertical;
+      padding: 1rem 1.05rem;
+      border-radius: 0.9rem;
+      border: 1.5px solid #dde7f7;
+      background: #f5f8fd;
+      color: #253348;
+      font-size: 1rem;
+      font-family: inherit;
+      min-height: 110px;
+      transition: border-color 0.2s;
+    }
+
+    /* FOOTER */
+    .footer-section {
+      background: #eaf3fb;
+      color: #253348;
+      padding: 2rem 1rem 1.1rem 1rem;
+      text-align: center;
+      font-size: 0.98rem;
+    }
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+    }
+    .footer-brand {
+      font-weight: 700;
+      font-size: 1.08rem;
+    }
+    .footer-nav {
+      margin: 0.1rem 0;
+    }
+    .footer-nav a {
+      color: #2582be;
+      text-decoration: none;
+      margin: 0 8px;
+      font-weight: 600;
+      transition: color 0.18s;
+    }
+    .footer-nav a:hover {
+      color: #085fbd;
+      text-decoration: underline;
+    }
+    .footer-contact i {
+      color: #2582be;
+      margin-right: 0.3rem;
+    }
+    .footer-contact a {
+      color: #2166a8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .footer-contact a:hover {
+      color: #05396b;
+      text-decoration: underline;
+    }
+    .footer-social a {
+      color: #2173bf;
+      background: #f3f9ff;
+      border-radius: 50%;
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      margin: 0 4px;
+      line-height: 32px;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: color 0.2s, background 0.2s;
+    }
+    .footer-social a:hover {
+      background: #2173bf;
+      color: #fff;
+    }
+    .footer-copy {
+      font-size: 0.9rem;
+      color: #6584a9;
+      margin-top: 0.1rem;
+    }
+
+    /* RESPONSIVE: MOBILE / TABLET */
+    @media (max-width: 900px) {
+      html, body {
+        width: 100%;
+        overflow-x: hidden;
+      }
+      .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 0.6rem;
+      }
+      .nav-right {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .hero-content {
+        flex-direction: column;
+        text-align: left;
+      }
+      .hero-text h1 {
+        font-size: 1.8rem;
+      }
+      .hero-image img {
+        width: 80vw;
+        max-width: 260px;
+      }
+      .services-grid,
+      .industries-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-content {
+        padding: 1.6rem 0.8rem 1.4rem 0.8rem;
+      }
+      .form-row {
+        flex-direction: column;
+      }
+      .form-row input {
+        width: 100%;
+      }
+      .footer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="main-nav">
+    <div class="logo-area">
+      <img src="logo.png" alt="Your Logo">
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li>
+        <span class="dropdown">Courses <i class="fa fa-chevron-down"></i></span>
+        <ul class="dropdown-menu">
+          <li><a href="#">Salesforce</a></li>
+        </ul>
+      </li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <span class="nav-phone"><i class="fa fa-phone"></i> +91 9561991889</span>
+      <span class="nav-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </span>
+    </div>
+  </nav>
+</header>
+
+<section id="home" class="hero-light">
+  <div class="hero-content">
+    <div class="hero-text">
+      
+      <h1>
+        <span class="strong">Empowering Businesses</span><br>
+        <span class="accent">with Salesforce Excellence</span>
+      </h1>
+      <p class="desc">
+        Transform your workflows, unlock automation, and accelerate growth with our end-to-end Salesforce services and consulting.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn">Book a Free Consultation</button>
+        <button class="btn outline">Explore Our Services</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="illustration.png" alt="Salesforce Admin Illustration">
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="about-content">
+    <h2>About Us</h2>
+    <p>
+      Shri Techsoft is a Salesforce-focused technology company dedicated to helping businesses simplify operations and unlock growth.
+    </p>
+    <p>
+      With strong expertise in Salesforce development, data engineering, and cloud solutions, we bring clarity, precision, and innovation to every project.
+    </p>
+  </div>
+</section>
+
+<section id="services" class="services-section">
+  <div class="services-content">
+    <h2>Our Core Services</h2>
+    <p class="subtitle">
+      We help you launch, optimize, and scale your Salesforce and cloud automation projects.
+    </p>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Salesforce Implementation</h3>
+        <p>Setup, configuration, and user training for new deployments and upgrades.</p>
+      </div>
+      <div class="service-card">
+        <h3>Customization &amp; Development</h3>
+        <p>Custom apps, Lightning Components, Apex, and Flow automation to fit your business.</p>
+      </div>
+      <div class="service-card">
+        <h3>Integration</h3>
+        <p>Connecting Salesforce with ERPs, payment gateways, marketing tools, and APIs.</p>
+      </div>
+      <div class="service-card">
+        <h3>Administration &amp; Support</h3>
+        <p>User management, dashboards, reports, and ongoing optimization.</p>
+      </div>
+      <div class="service-card">
+        <h3>Strategic Consulting</h3>
+        <p>CRM roadmap, process improvement, scalability, and automation strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="industries" class="industries-section">
+  <div class="industries-content">
+    <h2>Industries We Serve</h2>
+    <p class="subtitle">
+      ShriTechSoft empowers organizations across multiple sectors, solving unique challenges with tailored Salesforce solutions.
+    </p>
+    <div class="industries-grid">
+      <div class="industry-card">Retail &amp; E-Commerce</div>
+      <div class="industry-card">Banking &amp; Financial Services</div>
+      <div class="industry-card">Healthcare</div>
+      <div class="industry-card">Manufacturing</div>
+      <div class="industry-card">Education</div>
+      <div class="industry-card">Real Estate</div>
+      <div class="industry-card">Technology &amp; Startups</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="contact-content">
+    <h2>Contact Us</h2>
+    <p class="subtitle">
+      Reach out to discuss your Salesforce project, schedule a demo, or get a free consultation.
+    </p>
+    <form class="contact-form">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+      </div>
+      <div class="form-row">
+        <input type="tel" name="phone" placeholder="Phone Number">
+        <input type="text" name="company" placeholder="Company Name">
+      </div>
+      <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer-section">
+  <div class="footer-content">
+    <div class="footer-brand">
+      ShriTechSoft &mdash; Salesforce Services &amp; Consulting
+    </div>
+    <div class="footer-nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#industries">Industries</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-contact">
+      <span>
+        <i class="fa fa-envelope"></i>
+        <a href="mailto:-shritechsofts@gmail.com">-shritechsofts@gmail.com</a>
+      </span>
+    </div>
+    <div class="footer-social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 ShriTechSoft. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
